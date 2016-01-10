@@ -114,7 +114,8 @@ public class Home extends HttpServlet {
             Dao dao = new Dao(globalProps);
             String zkServer = globalProps.getProperty("zkServer");
             String[] zkServerLst = zkServer.split(",");
-
+            request.setCharacterEncoding("ISO-8859-1");
+            
             Map<String, Object> templateParam = new HashMap<>();
             String action = request.getParameter("action");
             String currentPath = request.getParameter("currentPath");
@@ -129,6 +130,11 @@ public class Home extends HttpServlet {
             String searchStr = request.getParameter("searchStr").trim();
             String authRole = (String) request.getSession().getAttribute("authRole");
 
+            logger.info("Encoding="+request.getCharacterEncoding());
+            logger.info("Contenttype="+request.getContentType());
+            logger.info("New value="+newValue);
+            logger.info("New value="+ newValue.getBytes("ISO-8859-1"));
+            
             switch (action) {
                 case "Save Node":
                     if (!newNode.equals("") && !currentPath.equals("") && authRole.equals(ZooKeeperUtil.ROLE_ADMIN)) {
