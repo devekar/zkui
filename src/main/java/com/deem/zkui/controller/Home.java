@@ -133,7 +133,7 @@ public class Home extends HttpServlet {
             logger.info("Encoding="+request.getCharacterEncoding());
             logger.info("Contenttype="+request.getContentType());
             logger.info("New value="+newValue);
-            logger.info("New value="+ newValue.getBytes("ISO-8859-1"));
+            
             
             switch (action) {
                 case "Save Node":

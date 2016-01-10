@@ -37,13 +37,13 @@ public class LdapAuth {
             env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
             env.put(Context.PROVIDER_URL, ldapUrl);
             env.put(Context.SECURITY_AUTHENTICATION, "simple");
-            env.put(Context.SECURITY_PRINCIPAL, domain + "\\" + username);
+            env.put(Context.SECURITY_PRINCIPAL, username + "@" + domain);
             env.put(Context.SECURITY_CREDENTIALS, password);
             try {
                 ctx = new InitialDirContext(env);
                 return true;
             } catch (NamingException e) {
-
+                logger.info("Ldap error", e);
             } finally {
                 if (ctx != null) {
                     try {
