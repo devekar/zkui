@@ -20,6 +20,7 @@ package com.deem.zkui.utils;
 import com.deem.zkui.vo.LeafBean;
 import com.deem.zkui.vo.ZKNode;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -382,10 +383,10 @@ public enum ZooKeeperUtil {
 
     }
 
-    public void setPropertyValue(String path, String name, String value, ZooKeeper zk) throws KeeperException, InterruptedException {
+    public void setPropertyValue(String path, String name, String value, ZooKeeper zk) throws KeeperException, InterruptedException, UnsupportedEncodingException {
         String nodePath = path + name;
         logger.debug("Setting property " + nodePath + " to " + value);
-        zk.setData(nodePath, value.getBytes(), -1);
+        zk.setData(nodePath, value.getBytes("ISO-8859-1"), -1);
 
     }
 
